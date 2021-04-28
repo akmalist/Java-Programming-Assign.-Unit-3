@@ -2,12 +2,15 @@ package cs1120;
 
 import javax.swing.JOptionPane;
 
+//main method
 public class Quiz {
-	
+	// two static member variables
 	static int nQuestions = 0;
 	static int nCorrect = 0;
 
 	public static void main(String[] args) {
+		
+		//list of questions  
 		String question = "When programming language Java was created?\n";
 		question += "A. 1995 \n";
 		question += "B. 2001 \n";
@@ -31,6 +34,8 @@ public class Quiz {
 		question3 += "D. Saturn \n";
 		question3 += "E. Jupiter \n";
 		
+		
+		//running check method to display question 		
 		check(question, "C");
 		check(question2, "B");		
 		check(question3, "E");
@@ -40,7 +45,15 @@ public class Quiz {
 		JOptionPane.showMessageDialog(null, nCorrect + " correct out of " + nQuestions + " questions ");
 
 	}
+	//check for valid answer 
+	private static boolean isValidAnswer(String answer) {
+		if (answer.equals("A") || answer.equals("B") || answer.equals("C") || answer.equals("D") || answer.equals("E")) {
+			return true;
+		}
+		return false;
+	}
 	
+	// ask method that takes a question and return answer in upper case 
 	static String ask(String question) {
 		String answer = JOptionPane.showInputDialog(question).toUpperCase();
 		while(!isValidAnswer(answer)) {
@@ -50,21 +63,20 @@ public class Quiz {
 		return answer;
 	}
 	
+	// method check that take question and check the correct answer
 	static void check(String question, String correctAnswer) {
-		nQuestions ++; // increment questions
+		// increment questions each time 
+		nQuestions ++; 
 		String answer = ask(question);		
 		if (answer.equals(correctAnswer)) {
-			nCorrect ++; // increment correct answers
+			 // increment correct answers for correct answers
+			nCorrect ++;
 			JOptionPane.showMessageDialog(null, "Correct!");
 		}else {
 			JOptionPane.showMessageDialog(null, "Incorrect. The correct answer is "+ correctAnswer);
 		}
 		
 	}
-	private static boolean isValidAnswer(String answer) {
-		if (answer.equals("A") || answer.equals("B") || answer.equals("C") || answer.equals("D") || answer.equals("E")) {
-			return true;
-		}
-		return false;
-	}
+	
+
 }
